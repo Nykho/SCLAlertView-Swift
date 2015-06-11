@@ -377,12 +377,18 @@ public class SCLAlertView: UIViewController {
             // Adjust text view size, if necessary
             let str = subTitle as NSString
             let attr = [NSFontAttributeName:viewText.font]
-            let sz = CGSize(width: kWindowWidth - 24, height:90)
+            let sz = CGSize(width: kWindowWidth - 24, height:99999)
             let r = str.boundingRectWithSize(sz, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes:attr, context:nil)
             let ht = ceil(r.size.height)
             if ht < kTextHeight {
                 kWindowHeight -= (kTextHeight - ht)
                 kTextHeight = ht
+            }
+             else {
+                var bounds = UIScreen.mainScreen().bounds
+                var deviceHeight = bounds.size.height
+                kWindowHeight += (ht - kTextHeight)
+                kTextHeight = ht > 0.75*deviceHeight ? 0.75*deviceHeight : ht
             }
         }
 
