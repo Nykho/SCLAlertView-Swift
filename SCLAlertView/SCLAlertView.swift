@@ -416,8 +416,8 @@ public class SCLAlertView: UIViewController {
         for txt in inputs {
             txt.layer.borderColor = viewColor.CGColor
         }
-        for btn in buttons {
-            btn.backgroundColor = viewColor
+        for (index, btn) in enumerate(buttons) {
+            btn.backgroundColor = index == count(buttons) - 1 ? UIColorFromRGB(0xC1272D) : viewColor
             if style == SCLAlertViewStyle.Warning {
                 btn.setTitleColor(UIColor.blackColor(), forState:UIControlState.Normal)
             }
